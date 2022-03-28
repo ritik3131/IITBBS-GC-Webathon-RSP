@@ -8,6 +8,7 @@ const MongoStore = require("connect-mongo");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const authRouter = require("./routes/authRoutes");
 const replyRouter = require("./routes/replyRoutes");

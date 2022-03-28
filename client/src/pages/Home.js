@@ -189,7 +189,7 @@ function Home() {
     setPosts(filterPost);
   };
   const [NotifForSearchPhrase, setNotifForSearchPhrase] = React.useState(true);
-  const [NotifForUser, setNotifForUser] = React.useState(!user);
+  const [NotifForUser, setNotifForUser] = React.useState(user);
   return (
     <>
       <Stack spacing={2} sx={{ width: "100%" }}>

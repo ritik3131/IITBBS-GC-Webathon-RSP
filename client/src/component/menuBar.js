@@ -3,7 +3,9 @@ import { Button, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import SearchButton from "./SearchButton";
-
+import { Avatar } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
 const MenuBar = () => {
   const pathName = window.location.pathname;
   const authCtx = useContext(AuthContext);
@@ -17,14 +19,15 @@ const MenuBar = () => {
     <Menu pointing secondary size="massive" color="teal">
       <Menu.Item name={authCtx.user.name} as={Link} to="/" active>
         {authCtx.user.name}
+        {/* <Avatar>{authCtx.user.name[0]}</Avatar> */}
       </Menu.Item>
       <div className="right menu">
-      <SearchButton/>
+        <SearchButton />
         <a
           className={`ui item ${activeItem === "logout" ? "active" : ""}`}
           href={googleLogoutURL}
         >
-          Logout
+          <LogoutIcon />
         </a>
       </div>
     </Menu>
@@ -40,12 +43,12 @@ const MenuBar = () => {
         Home
       </Menu.Item>
       <div className="right menu">
-      <SearchButton/>
+        <SearchButton />
         <a
           className={`ui item ${activeItem === "login" ? "active" : ""}`}
           href={googleURL}
         >
-          Login
+          <LoginIcon />
         </a>
       </div>
     </Menu>

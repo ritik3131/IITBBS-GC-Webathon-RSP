@@ -10,10 +10,10 @@ const post_schema = new mongoose.Schema(
           throw new Error('Abusive Language detected');
       },
     },
-    //image:{
-      //type:String,
+    image:{
+      type:String,
       //required:true
-    //},
+    },
     upvotes: {
       type: Array,
       default: [],

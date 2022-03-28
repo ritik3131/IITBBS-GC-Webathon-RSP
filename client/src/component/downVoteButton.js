@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { Chip, Tooltip, Zoom } from "@mui/material";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 // function DownvoteButton({
 //   likeCount,
 //   postId,
@@ -114,13 +115,13 @@ function DownvoteButton({
       <Tooltip
         TransitionComponent={Zoom}
         followCursor={true}
-        title={<Typography variant="h6">Downvote this post</Typography>}
+        title={<Typography variant="h6">Report this post</Typography>}
         TransitionProps={{ timeout: 600 }}
       >
         <Chip
           label={
-            <Typography label="h7" style={{ marginTop: "6px" }}>
-              {dislikeCount?dislikeCount:`0`}
+            <Typography label="h7" style={{ marginTop: "2px" }}>
+              {dislikeCount ? dislikeCount : `0`}
             </Typography>
           }
           onDelete={() => {
@@ -133,8 +134,8 @@ function DownvoteButton({
           disabled={userId === ""}
           deleteIcon={
             <IconButton>
-              <ThumbDownIcon
-                style={{ marginTop: "4px ", paddingRight: "2px" }}
+              <ReportProblemIcon
+                style={{ marginTop: "0px ", paddingRight: "2px" }}
               />
             </IconButton>
           }

@@ -1,19 +1,19 @@
-const postModel = require('../model/Posts');
-const replyModel = require('../model/Replies');
-const mongoose = require('mongoose');
+const postModel = require("../model/Posts");
+const replyModel = require("../model/Replies");
+const mongoose = require("mongoose");
 
 const getAllPost = async (req, res) => {
   try {
     //?sort=hot
     let sortby = { createdAt: -1 };
-    if (req.query.sort == 'hot') sortby = { noupvotes: -1};
-    let showBlacklist = { blacklist: 'false' };
+    if (req.query.sort == "hot") sortby = { noupvotes: -1 };
+    let showBlacklist = { blacklist: "false" };
     if (req.session.isAdmin) showBlacklist = {};
     const posts = await postModel
-    .find(showBlacklist)
-    .sort(sortby)
-    .populate('userid')
-    .exec();
+      .find(showBlacklist)
+      .sort(sortby)
+      .populate("userid")
+      .exec();
     res.status(200).json(posts);
   } catch (err) {
     console.log(err);
@@ -25,9 +25,9 @@ const getOnePost = async (req, res) => {
   try {
     const postId = req.params.postId;
     let sortby = { upvotes: -1 };
-    let showBlacklist = { blackList: 'false' };
+    let showBlacklist = { blackList: "false" };
     if (req.session.isAdmin) showBlacklist = {};
-    const post = await postModel.findById(postId).populate('userid');
+    const post = await postModel.findById(postId).populate("userid");
     const replies = await replyModel
       .find({ postid: postId, showBlacklist })
       .sort(sortby);
@@ -42,6 +42,7 @@ const createPost = async (req, res) => {
     const newPost = new postModel({
       username: req.user.name,
       content: req.body.content,
+      image: req.file.path,
       userid: mongoose.Types.ObjectId(req.user._id),
     });
     await newPost.save();
@@ -121,15 +122,19 @@ const vote = async (req, res) => {
           downvoters.push(userId);
         }
       }
-      change = { downvotes: downvoters, upvotes: upvoters,noupvotes:upvoters.length };
+      change = {
+        downvotes: downvoters,
+        upvotes: upvoters,
+        noupvotes: upvoters.length,
+      };
       await postModel.findByIdAndUpdate(postId, change);
       res.status(200).json({
-        status: 'success',
+        status: "success",
       });
     } catch (err) {
       res.status(404).json({
-        status: 'fail',
-        message: 'Post does not exit',
+        status: "fail",
+        message: "Post does not exit",
       });
     }
   } catch (err) {

@@ -8,6 +8,7 @@ const MongoStore = require("connect-mongo");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const authRouter = require("./routes/authRoutes");
 const replyRouter = require("./routes/replyRoutes");
@@ -32,6 +33,12 @@ const app = express();
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+//Things related to images
+app.use("/images", express.static(path.join(__dirname, "images")));
+// app.use(
+//   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
+// );
 
 app.use(
   cors({

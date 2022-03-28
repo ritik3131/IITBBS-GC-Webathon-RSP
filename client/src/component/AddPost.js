@@ -53,21 +53,38 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 // }
 function NewAddPost({ reload }) {
   const [content, setContent] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
   const changeValuesHandler = (e) => {
     setContent(e.target.value);
   };
   const submitPostHandler = async () => {
+    let formData = new FormData();
+    formData.append("content", content);
+    // formData.append("username", "Chris");
+    formData.append("image", imageUrl);
+    console.log(imageUrl, formData);
     if (content.trim().length > 0)
-      await axiosInstance.post(`${process.env.REACT_APP_BACKEND_HOST}/post`, {
-        content,
-      });
+      await axiosInstance.post(
+        `${process.env.REACT_APP_BACKEND_HOST}/post`,
+        formData,
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        }
+      );
     setContent("");
+    setImageUrl(null)
     reload();
   };
   const [displayFormInput, setDisplayFormInput] = React.useState(false);
   const Input = styled("input")({
     display: "none",
   });
+
+  const imageChangeHandler = (e) => {
+    setImageUrl(e.target.files[0]);
+  };
 
   return (
     <>
@@ -110,6 +127,7 @@ function NewAddPost({ reload }) {
                     id="contained-button-file"
                     multiple
                     type="file"
+                    onChange={imageChangeHandler}
                   />
                   <Button variant="contained" component="span">
                     Upload Image

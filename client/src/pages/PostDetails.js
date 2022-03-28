@@ -193,6 +193,7 @@ function PostDetails() {
     username: userName,
     blacklist,
     userid,
+    image
   } = post;
 
   const { image: userImage, mailId: userEmailId } = userid || {
@@ -239,8 +240,8 @@ function PostDetails() {
           component="img"
           height="194"
           width="194px"
-          image="https://images.freeimages.com/images/large-previews/648/bs-04-1255720.jpg"
-          alt="Paella dish"
+          image={image}
+          alt="Post Image"
         />
         <CardContent style={{}}>
           <Typography variant="h6" style={{ wordWrap: "break-word" }}>

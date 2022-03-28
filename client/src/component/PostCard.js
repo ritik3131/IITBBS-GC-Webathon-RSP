@@ -126,6 +126,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
     replies,
     userid,
     blacklist,
+    image,
   } = post;
   const upvotesCount = upvotes.length;
   const downvotesCount = downvotes.length;
@@ -190,8 +191,8 @@ function PostCard({ post, deletePostHandler, reloader }) {
           component="img"
           height="194"
           width="194px"
-          image="https://images.freeimages.com/images/large-previews/648/bs-04-1255720.jpg"
-          alt="Paella dish"
+          image={image}
+          alt="Post Image"
         />
 
         <CardContent style={{}}>

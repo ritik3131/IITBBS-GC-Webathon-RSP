@@ -10,9 +10,17 @@ const post_schema = new mongoose.Schema(
           throw new Error('Abusive Language detected');
       },
     },
+    //image:{
+      //type:String,
+      //required:true
+    //},
     upvotes: {
       type: Array,
       default: [],
+    },
+    noupvotes:{
+      type:Number,
+      default:0,
     },
     downvotes: {
       type: Array,
@@ -39,15 +47,6 @@ const post_schema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
-post_schema.virtual('noUpvotes').get(function () {
-  return this.upvotes.length;
-});
-
-post_schema.virtual('noDownvotes').get(function () {
-  return this.downvotes.length;
-});
-
 post_schema.pre('remove', async function (next) {
   await reply.deleteMany({ postid: this._id });
   next();

@@ -1,4 +1,4 @@
-# IITBBS_GC_Team16_PS02
+# IITBBS_GC_Webathon
 
 Members of the team:
 

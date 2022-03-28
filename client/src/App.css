@@ -1,0 +1,38 @@
+.page-title {
+  display: block !important;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.form-container {
+  width: 400px;
+  margin: auto;
+}
+
+.ui.grid > .row > .column > img,
+.ui.grid > .row > img {
+  max-width: 145%;
+  height: 150px;
+}
+
+.ui[class*="three column"].grid > .column:not(.row),
+.ui[class*="three column"].grid > .row > .column {
+  width: 37.33333333%;
+}
+
+.ui.mini.message {
+  font-size: 0.78571429em;
+}
+.ui.message {
+  padding: 0.5em 1.5em;
+}
+
+.content-post{
+  margin-bottom: 1rem;
+}
+
+
+.searchbtn{
+  margin-top: 1rem;
+}

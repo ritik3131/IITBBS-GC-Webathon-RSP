@@ -33,6 +33,12 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+//Things related to images
+app.use("/images", express.static(path.join(__dirname, "images")));
+// app.use(
+//   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
+// );
+
 app.use(
   cors({
     origin: process.env.FRONTEND_HOST,

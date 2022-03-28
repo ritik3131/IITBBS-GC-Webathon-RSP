@@ -290,6 +290,14 @@ function PostDetails() {
               }
             />
           </Tooltip>
+          {user && user.isAdmin && (
+            <BlackButton
+              blacklist={blacklist}
+              postId={postId}
+              onSubmit={submitCommentHandler}
+            />
+          )}
+
           {user && user.name === userName && (
             <DeleteButton
               postId={postId}

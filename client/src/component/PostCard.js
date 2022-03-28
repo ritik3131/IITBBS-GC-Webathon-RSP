@@ -16,7 +16,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import DeleteForever from "@mui/icons-material/DeleteForever";
-import { Chip, Tooltip, Zoom } from "@mui/material";
+import { Chip, Tooltip, Zoom, Button } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import DeleteButton from "./DeleteButton";
 // function PostCard({ post, deletePostHandler }) {
 //   const {
@@ -103,6 +104,15 @@ import DeleteButton from "./DeleteButton";
 //     </Card>
 //   );
 // }
+const useStyles = makeStyles((theme) => ({
+  customTooltip: {
+    // I used the rgba color for the standard "secondary" color
+    backgroundColor: "white",
+  },
+  customArrow: {
+    color: "rgba(220, 0, 78, 0.8)",
+  },
+}));
 function PostCard({ post, deletePostHandler, reloader }) {
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
@@ -132,15 +142,42 @@ function PostCard({ post, deletePostHandler, reloader }) {
     </div>
   );
 
+  const classes = useStyles();
   return (
     <>
       <Card sx={{ maxWidth: "345" }}>
         <CardHeader
           avatar={
-            <Avatar
-              src={userImage}
-              sx={{ width: "70px", height: "70px" }}
-            ></Avatar>
+            <Tooltip
+              // sx={{ backgroundColor: "white" }}
+              classes={{
+                tooltip: classes.customTooltip,
+                arrow: classes.customArrow,
+              }}
+              TransitionComponent={Zoom}
+              // followCursor={true}
+              TransitionProps={{ timeout: 600 }}
+              title={
+                <>
+                  {user && user.isAdmin && (
+                    <BlackButton
+                      userId={userid._id}
+                      blacklist={userid.blackList}
+                      onSubmit={reloader}
+                    />
+                  )}
+
+                  {/* <Button style={{}} variant="outlined"> */}
+                  {/* click me */}
+                  {/* </Button> */}
+                </>
+              }
+            >
+              <Avatar
+                src={userImage}
+                sx={{ width: "70px", height: "70px" }}
+              ></Avatar>
+            </Tooltip>
           }
           title={<Typography variant="h5">{userName}</Typography>}
           subheader={

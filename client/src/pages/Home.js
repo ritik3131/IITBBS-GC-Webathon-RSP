@@ -246,7 +246,7 @@ function Home() {
             >
               <AlertTitle variant="h4">Warning</AlertTitle>
               <Typography variant="h6">
-                Nigga You Gotta Login
+                You Gotta Login
                 <strong> to access any of the posts</strong>
               </Typography>
             </Alert>

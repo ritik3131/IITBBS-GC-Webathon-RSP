@@ -19,6 +19,7 @@ import DeleteForever from "@mui/icons-material/DeleteForever";
 import { Chip, Tooltip, Zoom, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import DeleteButton from "./DeleteButton";
+import PinnedButton from "./PinnedButton";
 // function PostCard({ post, deletePostHandler }) {
 //   const {
 //     content: body,
@@ -130,19 +131,10 @@ function PostCard({ post, deletePostHandler, reloader }) {
   } = post;
   const upvotesCount = upvotes.length;
   const downvotesCount = downvotes.length;
-  const commentCount = noOfReplies||0;
+  const commentCount = noOfReplies || 0;
   const { image: userImage, mailId: userEmailId } = userid;
   const { user } = useContext(AuthContext);
   // console.log("user=", user);
-  const blacklistPopup = (
-    <div>
-      <p>{userName}</p>
-      {user && user.isAdmin && (
-        <BlackButton userId={userid._id} blacklist={userid.blackList} />
-      )}
-    </div>
-  );
-
   const classes = useStyles();
   const blackListBackground = blacklist ? "#e6d1d1" : "white";
   return (
@@ -164,6 +156,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
               TransitionProps={{ timeout: 600 }}
               title={
                 <>
+                  <PinnedButton pinnedUser={userid.pinned} userId={userid._id} onSubmit={reloader} />
                   {user && user.isAdmin && (
                     <BlackButton
                       userId={userid._id}
@@ -204,7 +197,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
             {body}
           </Typography>
         </CardContent>
-        {blacklist && <strong style={{padding:"17px"}}>BlackListed</strong>}
+        {blacklist && <strong style={{ padding: "17px" }}>BlackListed</strong>}
         <CardActions>
           <LikeButton
             postId={id}

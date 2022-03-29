@@ -7,6 +7,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import FeedIcon from "@mui/icons-material/Feed";
 import SortIcon from "@mui/icons-material/Sort";
 import CloseIcon from "@mui/icons-material/Close";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 // import { Button, Select } from "semantic-ui-react";
 
 // function SortButton() {
@@ -32,10 +33,11 @@ function SortButton() {
   const options = [
     { key: "s", text: "Upvotes", value: "Upvotes" },
     { key: "t", text: "Newest", value: "createdAt" },
+    { key: "p", text: "Pinned user", value: "pinned" },
   ];
   const navigate = useNavigate();
   const changeSortingOrderHandler = (e) => {
-    const sort = e.target.textContent === "Upvotes" ? "hot" : "";
+    const sort = e.target.textContent === "Upvotes" ? "hot" : ( e.target.textContent==="Pinned user"?"pinned":"");
     if (sort) navigate(`/?sort=${sort}`);
     else navigate(`/`);
   };
@@ -62,9 +64,9 @@ function SortButton() {
             endIcon={
               data.text === "Upvotes" ? (
                 <ThumbUpIcon sx={{ marginTop: "-2px", marginLeft: "3px" }} />
-              ) : (
+              ) :(data.text==="Pinned user"?(<PersonOutlineIcon  sx={{ marginTop: "-2px", marginLeft: "10px" }}/>): (
                 <FeedIcon sx={{ marginTop: "-2px", marginLeft: "10px" }} />
-              )
+              ))
             }
             onClick={() => {
               changeSortingOrderHandler({

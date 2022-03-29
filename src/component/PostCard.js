@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 // import { Button, Card, Icon, Image, Label, Popup } from "semantic-ui-react";
 import moment from "moment";
 import { useNavigate } from "react-router";
@@ -15,8 +15,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
-import DeleteForever from "@mui/icons-material/DeleteForever";
-import { Chip, Tooltip, Zoom, Button } from "@mui/material";
+import { Chip, Tooltip, Zoom } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import DeleteButton from "./DeleteButton";
 import PinnedButton from "./PinnedButton";
@@ -115,7 +114,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function PostCard({ post, deletePostHandler, reloader }) {
-  const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
   const {
     content: body,
@@ -132,7 +130,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
   const upvotesCount = upvotes.length;
   const downvotesCount = downvotes.length;
   const commentCount = noOfReplies || 0;
-  const { image: userImage, mailId: userEmailId } = userid;
+  const { image: userImage } = userid;
   const { user } = useContext(AuthContext);
   // console.log("user=", user);
   const classes = useStyles();
@@ -156,7 +154,11 @@ function PostCard({ post, deletePostHandler, reloader }) {
               TransitionProps={{ timeout: 600 }}
               title={
                 <>
-                  <PinnedButton pinnedUser={userid.pinned} userId={userid._id} onSubmit={reloader} />
+                  <PinnedButton
+                    pinnedUser={userid.pinned}
+                    userId={userid._id}
+                    onSubmit={reloader}
+                  />
                   {user && user.isAdmin && (
                     <BlackButton
                       userId={userid._id}

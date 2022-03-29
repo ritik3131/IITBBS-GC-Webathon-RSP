@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-// import { Button, Form, Grid, Icon, Search } from "semantic-ui-react";
-import axiosInstance from "../util/axiosInstance";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-import { AppBar } from "@mui/material";
 // function SearchButton() {
 //   const [searchkey, setSearchkey] = useState("");
 //   const navigate = useNavigate();
@@ -94,9 +91,9 @@ function SearchButton() {
   const changeValuesHandler = (e) => {
     setSearchkey(e.target.value);
   };
-
+  
   const submitPostHandler = async () => {
-    console.log("ok");
+    console.log(error);
     if (searchkey.trim().length > 0) {
       setSearchkey("");
       navigate(`/?searchkey=${searchkey}`);

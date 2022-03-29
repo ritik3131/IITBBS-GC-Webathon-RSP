@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
-import { Button } from "semantic-ui-react";
 import { AuthContext } from "../context/auth";
 import axiosInstance from "../util/axiosInstance";
 import { Tooltip, IconButton, Typography, Zoom, Chip } from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
 function PinnedButton({ onSubmit, userId, pinnedUser }) {

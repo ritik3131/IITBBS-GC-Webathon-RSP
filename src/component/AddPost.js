@@ -2,12 +2,9 @@ import {
   ListItem,
   Stack,
   Button,
-  stepClasses,
   Typography,
-  Collapse,
   Zoom,
   TextField,
-  styled,
 } from "@mui/material";
 import React, { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
@@ -54,9 +51,6 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 function NewAddPost({ reload }) {
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
-  const changeValuesHandler = (e) => {
-    setContent(e.target.value);
-  };
   const submitPostHandler = async () => {
     let formData = new FormData();
     formData.append("content", content);
@@ -77,9 +71,6 @@ function NewAddPost({ reload }) {
     reload();
   };
   const [displayFormInput, setDisplayFormInput] = React.useState(false);
-  const Input = styled("input")({
-    display: "none",
-  });
 
   const imageChangeHandler = (e) => {
     setImageUrl(e.target.files[0]);

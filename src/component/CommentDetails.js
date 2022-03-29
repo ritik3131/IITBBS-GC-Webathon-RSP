@@ -1,4 +1,4 @@
-import { ListItem, Stack } from "@mui/material";
+import {  Stack } from "@mui/material";
 import moment from "moment";
 import React, { useContext } from "react";
 import { Card } from "semantic-ui-react";
@@ -65,5 +65,5 @@ function CommentDetails({ comments, postId, onSubmit }) {
     ))
   );
 }
-function newCommentDetails() {}
+
 export default CommentDetails;

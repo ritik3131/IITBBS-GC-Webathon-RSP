@@ -4,7 +4,7 @@ import PostCard from "../component/PostCard";
 import { AuthContext } from "../context/auth";
 import AddPost from "../component/AddPost";
 import axiosInstance from "../util/axiosInstance";
-import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import SortButton from "../component/SortButton";
 import Slide from "@mui/material/Slide";
 import {
@@ -15,11 +15,8 @@ import {
   Typography,
   ListItem,
   Grid,
-  Zoom,
-  checkboxClasses,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { TransitionGroup } from "react-transition-group";
 // function Home() {
 //   const authCtx = useContext(AuthContext);
 //   const [searchParams, setSearchParams] = useSearchParams();
@@ -128,7 +125,7 @@ function Home() {
     console.log("ReloaderCalled");
     setReloadChecker(!reloadChecker);
   }
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchkey = searchParams.get("searchkey");
   const sort = searchParams.get("sort");
   const reloaderx = searchParams.get("reloader");
@@ -180,7 +177,7 @@ function Home() {
       getAllPosts();
       if (reloaderx) navigate("/");
     }
-  }, [searchkey, sort, reloadChecker, reloaderx]);
+  }, [searchkey, sort, reloadChecker,navigate, reloaderx]);
 
   const deletePostHandler = (postId) => {
     console.log("DeletePostHandlerCalled");

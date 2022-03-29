@@ -2,7 +2,6 @@ import { Button, Collapse, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
 import { ListItem } from "@mui/material";
-import { TransitionGroup } from "react-transition-group";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import FeedIcon from "@mui/icons-material/Feed";
 import SortIcon from "@mui/icons-material/Sort";

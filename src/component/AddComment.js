@@ -1,23 +1,26 @@
 import React, { useRef, useState } from "react";
-import { Button, Card, Form } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import axiosInstance from "../util/axiosInstance";
 
-function AddPost({ postId ,onSubmit}) {
+function AddPost({ postId, onSubmit }) {
   const commentInputRef = useRef();
-  const [content,setContent]=useState('');
-  const changeValuesHandler=(e)=>{
-   setContent(e.target.value);
-  }
-  const submitReplyHandler=async(e)=>{
+  const [content, setContent] = useState("");
+  const changeValuesHandler = (e) => {
+    setContent(e.target.value);
+  };
+  const submitReplyHandler = async (e) => {
     e.preventDefault();
-    if(content.trim().length>0)
-     await axiosInstance.post(`${process.env.REACT_APP_BACKEND_HOST}/reply`,{content,postId});
-    setContent(''); 
+    if (content.trim().length > 0)
+      await axiosInstance.post(`${process.env.REACT_APP_BACKEND_HOST}/reply`, {
+        content,
+        postId,
+      });
+    setContent("");
     onSubmit();
-  }
+  };
 
   return (
-    <Card style={{ width: "140%" ,paddingTop:"20px" }}>
+    <Card style={{ width: "140%", paddingTop: "20px" }}>
       <Card.Content>
         <form onSubmit={submitReplyHandler}>
           <h2>Add Comment</h2>

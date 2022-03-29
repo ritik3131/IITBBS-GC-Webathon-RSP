@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Button, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import SearchButton from "./SearchButton";
-import { Avatar } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 const MenuBar = () => {

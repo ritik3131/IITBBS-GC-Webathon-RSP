@@ -135,6 +135,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
   // console.log("user=", user);
   const classes = useStyles();
   const blackListBackground = blacklist ? "#e6d1d1" : "white";
+  console.log("pinned user from card",user);
   return (
     <>
       <Card

@@ -5,10 +5,8 @@ import { Tooltip, IconButton, Typography, Zoom, Chip } from "@mui/material";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
 function PinnedButton({ onSubmit, userId ,pinnedUser}) {
-  console.log("pinned user from btn",pinnedUser);
   const pinnedIndex = pinnedUser.findIndex(
     (user) =>{ 
-      console.log(user,userId);
       return user.toString() === userId.toString()}
   );
 

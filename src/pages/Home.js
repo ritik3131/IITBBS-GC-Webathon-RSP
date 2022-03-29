@@ -153,7 +153,6 @@ function Home() {
         `${process.env.REACT_APP_BACKEND_HOST}/post`,
         { params: { sort } }
       );
-      console.log(process.env.REACT_APP_BACKEND_HOST)
       setPosts(response.data);
     };
     if (sort) getAllBySortPosts();

@@ -6,9 +6,8 @@ import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
 function PinnedButton({ onSubmit, userId, pinnedUser }) {
   const pinnedIndex = pinnedUser.findIndex(
-    (user) => user.toString() === userId
+    (user) => user.toString() === userId.toString()
   );
-  console.log(pinnedIndex);
   const { user } = useContext(AuthContext);
   const togglePinnedHandler = async () => {
     const body = { userId };

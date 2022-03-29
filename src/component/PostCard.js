@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     color: "rgba(220, 0, 78, 0.8)",
   },
 }));
-function PostCard({ post, deletePostHandler, reloader }) {
+function PostCard({ post, deletePostHandler, reloader ,pinned}) {
   const navigate = useNavigate();
   const {
     content: body,
@@ -127,7 +127,6 @@ function PostCard({ post, deletePostHandler, reloader }) {
     blacklist,
     image,
   } = post;
-  console.log("pinned user from card",userid);
   const upvotesCount = upvotes.length;
   const downvotesCount = downvotes.length;
   const commentCount = noOfReplies || 0;
@@ -155,7 +154,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
               title={
                 <>
                   <PinnedButton
-                    pinnedUser={userid.pinned}
+                    pinnedUser={pinned}
                     userId={userid._id}
                     onSubmit={reloader}
                   />

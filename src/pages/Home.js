@@ -134,6 +134,7 @@ function Home() {
   // if (reloaderx) setReloadChecker(!reloadChecker);
   // console.log("search from home",searchParams.get("searchkey"));
   const [posts, setPosts] = useState([]);
+  const [pinned, setPinned] = useState([]);
   const { user } = authCtx;
 
   useEffect(() => {
@@ -171,7 +172,9 @@ function Home() {
       const response = await axiosInstance.get(
         `${process.env.REACT_APP_BACKEND_HOST}/post`
       );
-      setPosts(response.data);
+      console.log("Response Data: ",response.data);
+      setPosts(response.data.posts);
+      setPinned(response.data.pinned);
     };
     if ((!searchkey && !sort) || reloaderx) {
       getAllPosts();
@@ -274,6 +277,7 @@ function Home() {
             <Grid item key={post._id} xs={12} md={4} sm={6} lg={4} xl={4}>
               <PostCard
                 post={post}
+                pinned={pinned}
                 key={post._id}
                 deletePostHandler={deletePostHandler}
                 reloader={Reloader}

@@ -17,4 +17,20 @@ router.patch("/blacklist", ensureAuth, isAdmin, async (req, res) => {
     res.status(400).send();
   }
 });
+router.patch("/togglepin",ensureAuth,async(req,res)=>{
+  try{
+    const toggleuser=req.body.topin;
+    const index=req.user.pinned.indexOf(toggleuser);
+    if(index===-1)
+      req.user.pinned.push(toggleuser);
+    else
+      req.user.pinned.splice(index,1);
+    const pinned=req.user.pinned; 
+    await post.findByIdAndUpdate(req.user._id,{pinned:pinned});
+    res.send();
+  }
+  catch(e){
+    res.status(400).send();
+  }
+});
 module.exports = router;

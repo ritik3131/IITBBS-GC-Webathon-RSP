@@ -7,10 +7,12 @@ const getAllPost = async (req, res) => {
     //?sort=hot
     let sortby = { createdAt: -1 };
     if (req.query.sort == "hot") sortby = { noupvotes: -1 };
-    let showBlacklist = { blacklist: "false" };
-    if (req.session.isAdmin) showBlacklist = {};
+    
+    let filter = { blacklist: "false" };
+    if (req.session.isAdmin) filter = {};
+    if(req.query.sort == 'pinned') filter.userid={$in: req.user.pinned};
     const posts = await postModel
-      .find(showBlacklist)
+      .find(filter)
       .sort(sortby)
       .populate("userid")
       .exec();
@@ -127,6 +129,8 @@ const vote = async (req, res) => {
         upvotes: upvoters,
         noupvotes: upvoters.length,
       };
+      if(downvoters.length>100)
+        change.blacklist=true;
       await postModel.findByIdAndUpdate(postId, change);
       res.status(200).json({
         status: "success",

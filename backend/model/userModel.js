@@ -33,6 +33,10 @@ const UserSchema = new Schema({
     type: Array,
     default: [],
   },
+  pinned: {
+    type: Array,
+    default: [],
+  }
 });
 
 module.exports = mongoose.model('user', UserSchema);

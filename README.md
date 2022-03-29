@@ -27,6 +27,8 @@ npm start in backend and cliend both
 # or
 yarn start
 ```
+## Video Demo
+[Click here](https://drive.google.com/drive/u/1/folders/1IuRLlRYaGSR4luFGUft8SurHIEgUwn2X)
 ## Features
 
 - You can login with google oauth

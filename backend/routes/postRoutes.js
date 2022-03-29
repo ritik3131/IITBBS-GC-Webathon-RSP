@@ -12,11 +12,11 @@ const {
   toggleBlackListPost,
   deletePost,
 } = require("../controller/postController");
-const { /*ensureAuth,*/ isAdmin } = require("../middleware/auth");
+const { ensureAuth, isAdmin } = require("../middleware/auth");
 
 router.get("/", /*ensureAuth,*/ getAllPost);
 
-router.get("/currentPost/:postId", /*ensureAuth,*/ getOnePost);
+router.get("/currentPost/:postId", ensureAuth, getOnePost);
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -51,11 +51,11 @@ const upload = multer({
   fileFilter: fileFilter,
 }).single("image");
 
-router.post("/", upload, /*ensureAuth,*/ createPost);
+router.post("/", upload, createPost);
 
-router.patch("/blackList", /*ensureAuth, isAdmin,*/ toggleBlackListPost);
+router.patch("/blackList",  isAdmin, toggleBlackListPost);
 
 router.patch("/vote", vote);
 
-router.delete("/:postId", /*ensureAuth,*/ deletePost);
+router.delete("/:postId",  deletePost);
 module.exports = router;

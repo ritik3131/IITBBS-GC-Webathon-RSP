@@ -33,7 +33,6 @@ const createReply = async (req, res) => {
       await newreply.save();
       replyPost.noOfReplies += 1;
       await replyPost.save();
-      console.log(replyPost);
       res.status(201).send();
     } else {
       res.status(500).send();

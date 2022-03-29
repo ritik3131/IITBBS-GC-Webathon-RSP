@@ -237,9 +237,9 @@ function PostDetails() {
 
         <CardMedia
           component="img"
-          height="194"
+          height="auto"
           width="194px"
-          image={image}
+          image={`http://localhost:9000/${image}`}
           alt="Post Image"
         />
         <CardContent style={{}}>

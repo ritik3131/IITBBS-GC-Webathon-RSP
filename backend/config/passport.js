@@ -24,7 +24,7 @@ module.exports = (passport) => {
             if (!user.blackList) done(null, user);
             else done(null, null);
           } else {
-            if (profile._json.hd === "iitbbs.ac.in") {
+            if (true) {
               await newUser.save();
               done(null, newUser);
             } else done(null, null);

@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Chip, Tooltip, Zoom } from "@mui/material";
+import { useNavigate } from "react-router";
 
 // function LikeButton({ likeCount, postId, upvotes, userId, replyId, onSubmit }) {
 //   const [liked, setLiked] = useState(false);
@@ -73,6 +74,7 @@ function LikeButton({
   reloader,
 }) {
   const [liked, setLiked] = useState(false);
+  const navigate=useNavigate();
   useEffect(() => {
     if (upvotes && upvotes.findIndex((upId) => upId === userId) !== -1)
       setLiked(true);
@@ -81,6 +83,8 @@ function LikeButton({
   }, [upvotes, userId]);
 
   const likePostHandler = async () => {
+    if(!userId)
+    navigate('/login');
     setLiked(!liked);
     const body = !replyId
       ? {

@@ -73,7 +73,7 @@ function NewAddPost({ reload }) {
         }
       );
     setContent("");
-    setImageUrl(null)
+    setImageUrl(null);
     reload();
   };
   const [displayFormInput, setDisplayFormInput] = React.useState(false);
@@ -121,11 +121,14 @@ function NewAddPost({ reload }) {
               </ListItem>
               <ListItem style={{ justifyContent: "center" }}>
                 <label htmlFor="contained-button-file">
-                  <Input
-                    accept="image/*"
-                    id="contained-button-file"
-                    multiple
+                  {/* <Input
+                    // accept="image/*" */}
+                  <input
                     type="file"
+                    hidden
+                    id="contained-button-file"
+                    // multiple
+                    // type="file"
                     onChange={imageChangeHandler}
                   />
                   <Button variant="contained" component="span">

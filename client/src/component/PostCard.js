@@ -188,7 +188,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
           component="img"
           height="194"
           width="194px"
-          image={`/backend/${image}`}
+          image={`http://localhost:9000/${image}`}
           alt="Post Image"
         />
 

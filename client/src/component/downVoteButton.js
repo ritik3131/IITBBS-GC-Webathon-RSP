@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Icon, Label, Popup } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import axiosInstance from "../util/axiosInstance";
+import { useNavigate } from "react-router";
 // import React, { useEffect, useState } from "react";
 // import axiosInstance from "../util/axiosInstance";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { Chip, Tooltip, Zoom } from "@mui/material";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 // function DownvoteButton({
@@ -83,6 +81,7 @@ function DownvoteButton({
   reloader,
 }) {
   const [downVote, setdownVote] = useState(false);
+  const navigate=useNavigate();
   useEffect(() => {
     if (downvotes && downvotes.findIndex((upId) => upId === userId) !== -1)
       setdownVote(true);
@@ -90,6 +89,8 @@ function DownvoteButton({
       setdownVote(false);
   }, [downvotes, userId]);
   const devotePostHandler = async () => {
+    if(!userId)
+    navigate('/login');
     setdownVote(!downVote);
     const body = !replyId
       ? {

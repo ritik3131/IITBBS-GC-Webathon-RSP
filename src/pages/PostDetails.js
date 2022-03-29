@@ -94,7 +94,7 @@ function PostDetails() {
           component="img"
           height="auto"
           width="194px"
-          image={`http://localhost:9000/${image}`}
+          image={`https://gc-scmedia-rps.herokuapp.com/${image}`}
           alt="Post Image"
         />
         <CardContent style={{}}>

@@ -190,7 +190,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
           component="img"
           height="194"
           width="194px"
-          image={`http://localhost:9000/${image}`}
+          image={`https://gc-scmedia-rps.herokuapp.com/${image}`}
           alt="Post Image"
         />
 

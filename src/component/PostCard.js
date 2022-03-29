@@ -127,15 +127,14 @@ function PostCard({ post, deletePostHandler, reloader }) {
     blacklist,
     image,
   } = post;
+  console.log("pinned user from card",userid);
   const upvotesCount = upvotes.length;
   const downvotesCount = downvotes.length;
   const commentCount = noOfReplies || 0;
   const { image: userImage } = userid;
   const { user } = useContext(AuthContext);
-  // console.log("user=", user);
   const classes = useStyles();
   const blackListBackground = blacklist ? "#e6d1d1" : "white";
-  console.log("pinned user from card",user);
   return (
     <>
       <Card

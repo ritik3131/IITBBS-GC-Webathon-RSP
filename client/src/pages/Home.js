@@ -16,6 +16,7 @@ import {
   ListItem,
   Grid,
   Zoom,
+  checkboxClasses,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { TransitionGroup } from "react-transition-group";
@@ -228,26 +229,29 @@ function Home() {
             <Typography variant="h3">Recent Posts</Typography>
           </div>
         )}
-        <Slide direction="down" in={NotifForUser} mountOnEnter unmountOnExit>
-          <Alert
-            severity="warning"
-            sx={{
-              "& .MuiAlert-icon": {
-                marginTop: "6px",
-              },
-            }}
-            action={
-              <div style={{ marginTop: "25px", marginRight: "12px" }}>
-                <CloseIcon onClick={() => setNotifForUser(false)}></CloseIcon>
-              </div>
-            }
-          >
-            <AlertTitle variant="h4">Warning</AlertTitle>
-            <Typography variant="h6">
-              Nigga You Gotta Login<strong> to access any of the posts</strong>
-            </Typography>
-          </Alert>
-        </Slide>
+        {!user && (
+          <Slide direction="down" in={NotifForUser} mountOnEnter unmountOnExit>
+            <Alert
+              severity="warning"
+              sx={{
+                "& .MuiAlert-icon": {
+                  marginTop: "6px",
+                },
+              }}
+              action={
+                <div style={{ marginTop: "25px", marginRight: "12px" }}>
+                  <CloseIcon onClick={() => setNotifForUser(false)}></CloseIcon>
+                </div>
+              }
+            >
+              <AlertTitle variant="h4">Warning</AlertTitle>
+              <Typography variant="h6">
+                Nigga You Gotta Login
+                <strong> to access any of the posts</strong>
+              </Typography>
+            </Alert>
+          </Slide>
+        )}
         <ListItem>
           <SortButton />
         </ListItem>

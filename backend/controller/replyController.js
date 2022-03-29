@@ -1,14 +1,14 @@
-const reply = require('../model/Replies');
-const mongoose = require('mongoose');
-const post = require('../model/Posts');
+const reply = require("../model/Replies");
+const mongoose = require("mongoose");
+const post = require("../model/Posts");
 
 const getReplies = async (req, res) => {
   try {
     let sortby = { createdAt: -1 };
-    if (req.query.sort == 'hot') sortby = { noUpvotes: 1, noDownvotes: -1 };
-    if (req.query.sort == 'recent') sortby = { updatedAt: -1 };
+    if (req.query.sort == "hot") sortby = { noUpvotes: 1, noDownvotes: -1 };
+    if (req.query.sort == "recent") sortby = { updatedAt: -1 };
     const postid = req.query.postid;
-    let showBlacklist = { blacklist: 'false' };
+    let showBlacklist = { blacklist: "false" };
     if (req.session.isAdmin) showBlacklist = {};
     const replies = await reply
       .find({ postid: postid, showBlacklist })
@@ -20,7 +20,7 @@ const getReplies = async (req, res) => {
 };
 
 const createReply = async (req, res) => {
-  const postId = req.body.postId.trim();
+  const postId = req.body.postId;
   try {
     const replyPost = await post.findById(postId);
     if (replyPost) {
@@ -31,8 +31,9 @@ const createReply = async (req, res) => {
         postid: mongoose.Types.ObjectId(postId),
       });
       await newreply.save();
-      replyPost.replies.push(newreply);
+      replyPost.noOfReplies += 1;
       await replyPost.save();
+      console.log(replyPost);
       res.status(201).send();
     } else {
       res.status(500).send();
@@ -103,7 +104,7 @@ const vote = async (req, res) => {
       change = { downvotes: downvoters, upvotes: upvoters };
       await reply.findByIdAndUpdate(replyId, change);
       res.status(200).json({
-        status: 'success',
+        status: "success",
       });
     } catch (err) {
       res.status(404).send();
@@ -121,11 +122,8 @@ const deleteReply = async (req, res) => {
 
     if (req.user._id.toString() === del_reply.userid.toString()) {
       const replyPost = await post.findById(postId);
-      const replyIndex = replyPost.replies.findIndex(
-        (reply) => reply.toString() === replyId
-      );
-      if (replyIndex !== -1) {
-        replyPost.replies.splice(replyIndex, 1);
+      if (replyPost) {
+        replyPost.noOfReplies -= 1;
         await replyPost.save();
         await del_reply.delete();
       }

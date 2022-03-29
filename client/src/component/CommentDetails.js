@@ -14,13 +14,20 @@ function CommentDetails({ comments, postId, onSubmit }) {
   return (
     comments &&
     comments.map((comment) => (
-      <Card fluid key={comment._id}>
+      <Card
+        fluid
+        key={comment._id}
+        style={{ backgroundColor: comment.blackList ? "#e6d1d1" : "white" }}
+      >
         <Card.Content>
           <Card.Header>{comment.username}</Card.Header>
           <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
           <Card.Description className="content-post">
             {comment.content}
           </Card.Description>
+          {comment.blackList && (
+            <strong style={{ paddingBottom: "5px" }}>BlackListed</strong>
+          )}
           <Stack direction="row" spacing={1}>
             <LikeButton
               replyId={comment._id}

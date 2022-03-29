@@ -62,7 +62,6 @@ function NewAddPost({ reload }) {
     formData.append("content", content);
     // formData.append("username", "Chris");
     formData.append("image", imageUrl);
-    console.log(imageUrl, formData);
     if (content.trim().length > 0)
       await axiosInstance.post(
         `${process.env.REACT_APP_BACKEND_HOST}/post`,

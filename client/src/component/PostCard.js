@@ -123,14 +123,14 @@ function PostCard({ post, deletePostHandler, reloader }) {
     downvotes,
     _id: id,
     username: userName,
-    replies,
+    noOfReplies,
     userid,
     blacklist,
     image,
   } = post;
   const upvotesCount = upvotes.length;
   const downvotesCount = downvotes.length;
-  const commentCount = replies.length;
+  const commentCount = noOfReplies||0;
   const { image: userImage, mailId: userEmailId } = userid;
   const { user } = useContext(AuthContext);
   // console.log("user=", user);
@@ -144,9 +144,13 @@ function PostCard({ post, deletePostHandler, reloader }) {
   );
 
   const classes = useStyles();
+  const blackListBackground = blacklist ? "#e6d1d1" : "white";
   return (
     <>
-      <Card sx={{ maxWidth: "345" }}>
+      <Card
+        sx={{ maxWidth: "345" }}
+        style={{ backgroundColor: blackListBackground }}
+      >
         <CardHeader
           avatar={
             <Tooltip
@@ -191,7 +195,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
           component="img"
           height="194"
           width="194px"
-          image={image}
+          image={`/backend/${image}`}
           alt="Post Image"
         />
 
@@ -200,6 +204,7 @@ function PostCard({ post, deletePostHandler, reloader }) {
             {body}
           </Typography>
         </CardContent>
+        {blacklist && <strong style={{padding:"17px"}}>BlackListed</strong>}
         <CardActions>
           <LikeButton
             postId={id}

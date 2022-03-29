@@ -176,7 +176,6 @@ function PostDetails() {
         `${process.env.REACT_APP_BACKEND_HOST}/post/currentPost/${postId}`
       );
       const { post, replies } = response.data;
-      console.log(post, replies, "hue");
       setPost(post);
       setReplies(replies);
     };

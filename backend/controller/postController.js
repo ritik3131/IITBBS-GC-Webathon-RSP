@@ -131,6 +131,7 @@ const vote = async (req, res) => {
       };
       if(downvoters.length>100)
         change.blacklist=true;
+      
       await postModel.findByIdAndUpdate(postId, change);
       res.status(200).json({
         status: "success",

@@ -101,6 +101,8 @@ const vote = async (req, res) => {
         }
       }
       change = { downvotes: downvoters, upvotes: upvoters };
+      if(downvoters.length>100)
+        change.blacklist=true;
       await reply.findByIdAndUpdate(replyId, change);
       res.status(200).json({
         status: "success",

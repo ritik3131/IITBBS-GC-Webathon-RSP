@@ -52,7 +52,7 @@ function Home() {
         `${process.env.REACT_APP_BACKEND_HOST}/post`,
         { params: { sort } }
       );
-      setPosts(response.data.post);
+      setPosts(response.data.posts);
       setPinned(response.data.pinned);
     };
     if (sort) getAllBySortPosts();

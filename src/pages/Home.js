@@ -157,7 +157,7 @@ function Home() {
           {user && !searchkey && <AddPost reload={Reloader} />}
         </ListItem>
       </Stack>
-      {!posts || posts.length === 0 ? (
+      {posts && posts.length === 0 ? (
         <div>no posts to show</div>
       ) : (
         // <TransitionGroup>

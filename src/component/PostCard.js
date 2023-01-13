@@ -189,7 +189,7 @@ function PostCard({ post, deletePostHandler, reloader ,pinned}) {
           component="img"
           height="194"
           width="194px"
-          image={`https://gc-scmedia-rps.herokuapp.com/${image}`}
+          image={`https://whats-brewing.onrender.com/${image}`}
           alt="Post Image"
         />
 

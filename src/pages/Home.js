@@ -52,8 +52,9 @@ function Home() {
         `${process.env.REACT_APP_BACKEND_HOST}/post`,
         { params: { sort } }
       );
-      setPosts(response.data.posts);
-      setPinned(response.data.pinned);
+      setPosts(response.data);
+      //setPosts(response.data.posts);
+      //setPinned(response.data.pinned);
     };
     if (sort) getAllBySortPosts();
   }, [sort, reloadChecker]);
@@ -71,8 +72,9 @@ function Home() {
       const response = await axiosInstance.get(
         `${process.env.REACT_APP_BACKEND_HOST}/post`
       );
-      setPosts(response.data.posts);
-      setPinned(response.data.pinned);
+      setPosts(response.data);
+      //setPosts(response.data.posts);
+      //setPinned(response.data.pinned);
     };
     if ((!searchkey && !sort) || reloaderx) {
       getAllPosts();

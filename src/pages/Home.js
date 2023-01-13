@@ -52,6 +52,7 @@ function Home() {
         `${process.env.REACT_APP_BACKEND_HOST}/post`,
         { params: { sort } }
       );
+      setPinned([]);
       setPosts(response.data);
       //setPosts(response.data.posts);
       //setPinned(response.data.pinned);

@@ -272,7 +272,7 @@ function Home() {
             paddingBottom: "20px",
           }}
         >
-          {!posts&&posts.map((post) => (
+          {posts&&posts.map((post) => (
             // <Zoom key={post._id}>
             <Grid item key={post._id} xs={12} md={4} sm={6} lg={4} xl={4}>
               <PostCard

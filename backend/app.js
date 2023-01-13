@@ -47,6 +47,8 @@ app.use(
   })
 );
 
+app.set('trust proxy',true);
+
 app.use(express.json());
 
 app.use(function (req, res, next) {
